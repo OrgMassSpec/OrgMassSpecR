@@ -1,0 +1,154 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{OrgMassSpecR Examples}
+
+```{r Setup, echo=FALSE}
+library(knitr)
+opts_chunk$set(comment=NA)
+```
+
+Vignette for OrgMassSpecR: Examples
+==================================================
+
+Nathan G. Dodder
+
+March 2014
+
+Introduction
+--------------------------------------------------
+
+`OrgMassSpecR` is a package for organic/biological mass spectrometry.  This vignette demonstrates some of the functions in a larger context than the help file examples.
+
+First, load the package.
+
+```{r Load}
+library(OrgMassSpecR)
+```
+
+Small Molecules
+--------------------------------------------------
+
+The functions `MonoisotopicMass` and `IsotopicDistribution` assist in identifying unknown mass spectra, or in confirming peak identities in known spectra.  The monoisotopic mass of DDE, a breakdown product of the pesticide DDT, is calculated as follows.
+
+```{r Example1}
+MonoisotopicMass(formula = list(C=14, H=8, Cl=4))
+```
+
+The monoisotopic masses due to successive losses of chlorine, which are observed in the electron impact mass spectrum of DDE, are calculated by repeated calls to `MonoisotopicMass`.
+
+```{r Example2}
+MonoisotopicMass(formula = list(C=14, H=8, Cl=3))
+MonoisotopicMass(formula = list(C=14, H=8, Cl=2))
+```
+
+The monoisotopic mass of <sup>13</sup>C<sub>12</sub> labeled DDE (an internal/surrogate standard for the quantification of DDE) is calculated using the list component `x`. 
+
+```{r Example3}
+MonoisotopicMass(formula = list(C=2, H=8, Cl=4, x = 12), 
+                 isotopes = list(x = 13.0033548378))
+```
+
+The isotopic distribution of DDE is simulated using `IsotopicDistribution`.  This function uses a binning approach based on `sample`, where the probabilities are the natural abundances of the isotopes.  The output of this function is a table, but it is often helpful to plot the distribution.
+
+```{r Example4}
+dde.dist <- IsotopicDistribution(formula = list(C=14, H=8, Cl=4))
+dde.dist
+```
+
+```{r Example5, fig.width=4, fig.height=4, dpi=300, out.width="400px", out.height="400px"}
+# plot
+library(lattice)
+print(xyplot(percent ~ mz,
+  data = dde.dist,
+  type = "h",
+  xlab = "m/z",
+  ylab = "intensity (%)",
+  main = "Isotopic Distribution, DDE")
+)
+```
+
+The similarity between two mass spectra can be examined using `SpectrumSimilarity`.  This function makes a head-to-tail plot of the spectra and calculates a mass spectral similarity score based on the dot product of the two mass-aligned intensity vectors.  See the help file for an example.
+
+Proteins and Peptides
+--------------------------------------------------
+
+The following functions assist in setting up multiple reaction monitoring (MRM) assays for the quantification of proteins.  These assays require the selection of "signature peptides" (_1,2_).
+
+Peptides resulting from a protein digestion with trypsin or pepsin can be prediced using `Digest`.
+
+```{r Example6}
+hsa <- Digest(example.sequence)
+head(hsa)
+```
+
+Next, peptides between 5 and 12 amino acids are selected (the range is somewhat arbitrary; small peptides may not be specific to the target protein, large peptides may have low sensitivity).
+
+```{r Example7}
+hsa.sub <- subset(hsa, nchar(hsa$peptide) >= 5 & nchar(hsa$peptide) <= 12)
+head(hsa.sub)
+```
+
+The filtered table can be used to screen a digest for the presence of these peptides by operating the triple quadrupole instrument in Q1 selected ion mode with Q2 and Q3 open.  Assuming peptides YLYEIAR and AEFAEVSK are found (the number is kept small for this example), the next step is to determine their most intense MRM transitions.  The b- and y-ions of the peptides are calculated using `FragmentPeptide`.
+
+```{r Example8}
+transitions <- FragmentPeptide(c("YLYEIAR", "AEFAEVSK"))
+head(transitions)
+```
+
+This table can be used to screen the MRM transitions.  The table is formatted to facilitate easy selection of the appropriate precursor ion and product ion charge states.
+
+Note: both `Digest` and `FragmentPepetide` by default use `IAA=TRUE`, specifying iodoacetylated cysteine.  
+
+Once the signature peptides for the target protein have been determined, MRM transitions for the internal standard peptides must be set up.  Generally, either synthetic <sup>13</sup>C-labeled peptides or <sup>15</sup>N-labeled proteins are used.  <sup>15</sup>N-labeled proteins are added prior to the digestion to yield <sup>15</sup>N-labeled peptides. 
+
+The MRM transitions for YLYEIAR with the terminal arginine <sup>13</sup>C-labeled are calculated as follows.
+
+```{r Example9}
+c13.labeled <- FragmentPeptide("YLYEIAr", custom = list(code = "r", 
+  mass = MonoisotopicMass(formula = list(C=6, H=12, N=4, O=1), 
+                          isotopes = list(C=13.0033548378))))
+head(c13.labeled)
+```
+
+The MRM transitions for fully <sup>15</sup>N-labeled YLYEIAR are calculated as follows.  Note that `FragmentPeptide` and `Digest` do not label the nitrogens incorporated into the peptide due to iodoacetamide treatment (when IAA = TRUE and 15N = TRUE). 
+
+```{r Example10}
+n15.labeled <- FragmentPeptide("YLYEIAR", N15 = TRUE)
+head(n15.labeled)
+```
+
+An acquired full-scan peptide spectrum can be plotted using `PeptideSpectrum`.  The peptide sequence must be known to determine the fragment ion identities (i.e., the function does not sequence the peptide _de novo_).  This function was created to catalog full-scan mass spectra and double check that the most intense ions observed by MRM screens correspond to the most intense ions observed in full scan mode.  See the help file for an example.   
+
+Before use as an internal standard, the <sup>15</sup>N incorporation in the expressed protein should be measured.  The incorporation should be high enough that the isotopic envelop of the internal standard signature peptide does not overlap with that of the corresponding unlabeled signature peptide.
+
+The isotopic distribution of <sup>15</sup>N labeled peptides is calculated using `IsotopicDistributionN`.
+
+```{r Example11, fig.width=4, fig.height=4, dpi=300, out.width="400px", out.height="400px"}
+theoretical.dist <- IsotopicDistributionN("YEVQGEVFTKPQLWP", incorp = 0.99)
+print(xyplot(percent ~ mz,
+  data = theoretical.dist,
+  type = "h",
+  xlab = "m/z",
+  ylab = "intensity (%)",
+  main = "Theoretical Isotopic Distribution,\n YEVQGEVFTKPQLWP, 99% 15N")
+)
+```
+
+The theoretical distribution is compared to the measured distribution.  In this example, visual inspection shows the incorporation in the peptide, and by extension the protein, is about 99% (although in a real experiment more than one peptide should be measured to confirm the results).  See the `IsotopicDistributionN` help file for an example calculating and plotting a range of <sup>15</sup>N incorporations. 
+
+```{r Example12, fig.width=4, fig.height=4, dpi=300, out.width="400px", out.height="400px"}
+example.spectrum.labeled$percent <- with(example.spectrum.labeled, 
+  intensity / max(intensity) * 100)
+print(xyplot(percent ~ mz,
+  data = example.spectrum.labeled,
+  type = "l",
+  xlab = "m/z",
+  ylab = "intensity (%)",
+  main = "Measured Isotopic Distribution,\n YEVQGEVFTKPQLWP")
+)
+```
+
+References
+--------------------------------------------------
+
+1. Addona TA, Abbatiello SE, Schilling B, Skates SJ, Mani DR, Bunk DM, Spiegelman CH, Zimmerman LJ, Ham AJ, Keshishian H, Hall SC, Allen S, Blackman RK, Borchers CH, Buck C, Cardasis HL, Cusack MP, Dodder NG, Gibson BW, Held JM, Hiltke T, Jackson A, Johansen EB, Kinsinger CR, Li J, Mesri M, Neubert TA, Niles RK, Pulsipher TC, Ransohoff D, Rodriguez H, Rudnick PA, Smith D, Tabb DL, Tegeler TJ, Variyath AM, Vega-Montoto LJ, Wahlander A, Waldemarson S, Wang M, Whiteaker JR, Zhao L, Anderson NL, Fisher SJ, Liebler DC, Paulovich AG, Regnier FE, Tempst P, Carr SA. Multi-site assessment of the precision and reproducibility of multiple reaction monitoring-based measurements of proteins in plasma. _Nature Biotechnology_, __2009__, 27, 633-641.
+2. Liao WL, Heo GY, Dodder NG, Pikuleva IA, Turko IV.  Optimizing the conditions of a multiple reaction monitoring assay for membrane proteins: quantification of cytochrome P450 11A1 and adrenodoxin reductase in bovine adrenal cortex and retina. _Analytical Chemistry_, __2010__, 82, 5760-5767. This reference used OrgMassSpecR as described here. 
