@@ -15,3 +15,8 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+#Linguist Overrides
+OrgMassSpecR/man/* linguist-documentation
+OrgMassSpecR/inst/* linguist-documentation
+OrgMassSpecR/vignettes/* linguist-documentation
