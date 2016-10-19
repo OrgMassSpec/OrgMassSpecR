@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
+\section{Changes in version 0.4-6 (2016-10-18)}{
+
+    \itemize{
+
+      \item Added example to WriteMspFile.Rd.
+
+    }
+
+}
+
 \section{Changes in version 0.4-4 (2014-05-21)}{
 
     \itemize{
