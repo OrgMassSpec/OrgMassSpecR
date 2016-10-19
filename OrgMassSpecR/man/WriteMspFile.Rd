@@ -32,14 +32,28 @@
 }
 \author{Nathan G. Dodder}
 \examples{
+## Simple example to illustrate the input data formats. 
 
-## Example using SpecLibExample package
+spectra <- data.frame(filename = c(rep("Spectrum A", 2), rep("Spectrum B", 2)),
+                      mz = c(50, 51, 100, 101),
+                      intensity = c(70, 71, 90, 91))
+
+metadata <- data.frame(filename = c("Spectrum A", "Spectrum B"),
+                       compound = c("Compound A", "Compound B"))
+
+\dontrun{
+WriteMspFile(spectra = spectra, 
+             metadata = metadata,
+             filename = "Test.txt",
+             comment = "Test Comment")
+}
+
+## Example using SpecLibExample package located at http://OrgMassSpec.github.io/libraries.html.
 \dontrun{
 library(SpecLibExample)
 WriteMspFile(spectra = spec,
              metadata = meta,
              comment = "example output")
-
 }
 }
 
