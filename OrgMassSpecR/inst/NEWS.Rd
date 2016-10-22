@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
+\section{Changes in development version}{
+
+    \itemize{
+
+      \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. 
+
+    }
+
+}
+
 \section{Changes in version 0.4-6 (2016-10-18)}{
 
     \itemize{

@@ -5,7 +5,8 @@
 \usage{
 SpectrumSimilarity(spec.top, spec.bottom, t = 0.25, b = 10, 
                    top.label = NULL, bottom.label = NULL, 
-                   xlim = c(50, 1200))
+                   xlim = c(50, 1200), print.alignment = FALSE,
+                   print.graphic = TRUE)
 }
 \arguments{
     \item{spec.top}{data frame containing the experimental spectrum's peak list with the \emph{m/z} values in the first column and corresponding intensities in the second}
@@ -15,9 +16,11 @@ SpectrumSimilarity(spec.top, spec.bottom, t = 0.25, b = 10,
     \item{top.label}{character string to label the top spectrum.}
     \item{bottom.label}{character string to label the bottom spectrum.}
     \item{xlim}{numeric vector of length 2, defining the beginning and ending values of the x-axis.}
+    \item{print.alignment}{TRUE or FALSE value indicating if a data frame showing the aligned \emph{m/z} values should be printed. Default is FALSE. The data frame contains aligned peak intensities from the top and bottom spectra, and is used to check the results.}
+    \item{print.graphic}{TRUE or FALSE value indicating if the head-to-tail plot should be printed. The defaut value is TRUE. The unaligned spectra are shown in the plot.}
 }
 \details{
-The mass spectral similarity score is calculated as (where \eqn{\cdot}{\%*\%} is the dot product) \deqn{\cos \theta = \frac{u \cdot v}{\sqrt{u \cdot u} \sqrt{v \cdot v}}}{cos \theta = (u \%*\% v) / (sqrt(sum(u^2)) * sqrt(sum(v^2)))} where \eqn{u} and \eqn{v} are the aligned intensity vectors of the two spectra.  The \code{t} argument is used to align the intensities.  The bottom spectum is used as the reference spectrum, and the \emph{m/z} values of peaks in the top spectrum that are within \code{t} of a reference \emph{m/z} value are paired with that reference peak.  Ideally, a single peak from the top spectrum should be paired with a single peak from the reference spectrum.  Peaks without a match are paired with an intensity of zero.  A data frame showing the aligned \emph{m/z} values, peak intensities from the top spectrum, and peak intensities from the bottom spectrum, is printed in order to check the results.  The unaligned spectra are shown in the plot.
+The mass spectral similarity score is calculated as (where \eqn{\cdot}{\%*\%} is the dot product) \deqn{\cos \theta = \frac{u \cdot v}{\sqrt{u \cdot u} \sqrt{v \cdot v}}}{cos \theta = (u \%*\% v) / (sqrt(sum(u^2)) * sqrt(sum(v^2)))} where \eqn{u} and \eqn{v} are the aligned intensity vectors of the two spectra.  The \code{t} argument is used to align the intensities.  The bottom spectum is used as the reference spectrum, and the \emph{m/z} values of peaks in the top spectrum that are within \code{t} of a reference \emph{m/z} value are paired with that reference peak.  Ideally, a single peak from the top spectrum should be paired with a single peak from the reference spectrum.  Peaks without a match are paired with an intensity of zero.
 
 Note that, although both are based on the cosine of the two intensity vectors, the spectral similarity score given by \code{SpectrumSimilarity} is not the same as that given by the NIST MS Search program, described in the reference below. 
 }
