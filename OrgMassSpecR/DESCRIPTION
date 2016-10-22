@@ -1,12 +1,12 @@
 Package: OrgMassSpecR
 Type: Package
 Title: Organic Mass Spectrometry
-Version: 0.4-7
-Date: 2016-10-21
+Version: 0.4-8
+Date: 2016-10-22
 Authors@R: c(person("Nathan", "Dodder", role = c("cre", "aut", "cph"), email = "ndodder@mail.sdsu.edu"),
              person("Katharine", "Mullen", role = "ctb"))
 Depends: R (>= 3.0.0)
-Suggests: lattice, knitr
+Suggests: lattice, knitr, rmarkdown
 Description: Organic/biological mass spectrometry data analysis.
 License: BSD_2_clause + file LICENSE 
 URL: http://OrgMassSpec.github.io/

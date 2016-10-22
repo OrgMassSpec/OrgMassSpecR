@@ -1,20 +1,22 @@
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{OrgMassSpecR Examples}
+---
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{OrgMassSpecR Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Vignette for OrgMassSpecR: Examples
+
+### Nathan Dodder
+#### Package Version: `r packageVersion('OrgMassSpecr')`, Date: `r Sys.Date()`
 
 ```{r Setup, echo=FALSE}
 library(knitr)
-opts_chunk$set(comment=NA)
+opts_chunk$set(tidy = FALSE, comment = NA)
 ```
 
-Vignette for OrgMassSpecR: Examples
-==================================================
-
-Nathan G. Dodder
-
-March 2014
-
-Introduction
---------------------------------------------------
+### Introduction
 
 `OrgMassSpecR` is a package for organic/biological mass spectrometry.  This vignette demonstrates some of the functions in a larger context than the help file examples.
 
@@ -24,8 +26,7 @@ First, load the package.
 library(OrgMassSpecR)
 ```
 
-Small Molecules
---------------------------------------------------
+### Small Molecules
 
 The functions `MonoisotopicMass` and `IsotopicDistribution` assist in identifying unknown mass spectra, or in confirming peak identities in known spectra.  The monoisotopic mass of DDE, a breakdown product of the pesticide DDT, is calculated as follows.
 
@@ -68,8 +69,7 @@ print(xyplot(percent ~ mz,
 
 The similarity between two mass spectra can be examined using `SpectrumSimilarity`.  This function makes a head-to-tail plot of the spectra and calculates a mass spectral similarity score based on the dot product of the two mass-aligned intensity vectors.  See the help file for an example.
 
-Proteins and Peptides
---------------------------------------------------
+### Proteins and Peptides
 
 The following functions assist in setting up multiple reaction monitoring (MRM) assays for the quantification of proteins.  These assays require the selection of "signature peptides" (_1,2_).
 
@@ -147,8 +147,7 @@ print(xyplot(percent ~ mz,
 )
 ```
 
-References
---------------------------------------------------
+### References
 
 1. Addona TA, Abbatiello SE, Schilling B, Skates SJ, Mani DR, Bunk DM, Spiegelman CH, Zimmerman LJ, Ham AJ, Keshishian H, Hall SC, Allen S, Blackman RK, Borchers CH, Buck C, Cardasis HL, Cusack MP, Dodder NG, Gibson BW, Held JM, Hiltke T, Jackson A, Johansen EB, Kinsinger CR, Li J, Mesri M, Neubert TA, Niles RK, Pulsipher TC, Ransohoff D, Rodriguez H, Rudnick PA, Smith D, Tabb DL, Tegeler TJ, Variyath AM, Vega-Montoto LJ, Wahlander A, Waldemarson S, Wang M, Whiteaker JR, Zhao L, Anderson NL, Fisher SJ, Liebler DC, Paulovich AG, Regnier FE, Tempst P, Carr SA. Multi-site assessment of the precision and reproducibility of multiple reaction monitoring-based measurements of proteins in plasma. _Nature Biotechnology_, __2009__, 27, 633-641.
 2. Liao WL, Heo GY, Dodder NG, Pikuleva IA, Turko IV.  Optimizing the conditions of a multiple reaction monitoring assay for membrane proteins: quantification of cytochrome P450 11A1 and adrenodoxin reductase in bovine adrenal cortex and retina. _Analytical Chemistry_, __2010__, 82, 5760-5767. This reference used OrgMassSpecR as described here. 
