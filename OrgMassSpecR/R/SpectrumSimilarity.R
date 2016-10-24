@@ -1,5 +1,5 @@
 SpectrumSimilarity <- function(spec.top, spec.bottom, t = 0.25, b = 10, top.label = NULL, 
-                               bottom.label = NULL, xlim = c(50, 1200), print.alignment = FALSE,
+                               bottom.label = NULL, xlim = c(50, 1200), x.threshold = 0, print.alignment = FALSE,
                                print.graphic = TRUE) {
   
   
@@ -33,6 +33,10 @@ SpectrumSimilarity <- function(spec.top, spec.bottom, t = 0.25, b = 10, top.labe
   
   
   ## similarity score calculation
+  
+  if(x.threshold < 0) stop("x.threshold argument must be zero or a positive number")
+  
+  alignment <- alignment[alignment[,1] >= x.threshold, ]
   
   u <- alignment[,2]; v <- alignment[,3]
   similarity_score <- as.vector((u %*% v) / (sqrt(sum(u^2)) * sqrt(sum(v^2))))

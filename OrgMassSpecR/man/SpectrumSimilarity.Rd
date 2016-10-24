@@ -5,8 +5,8 @@
 \usage{
 SpectrumSimilarity(spec.top, spec.bottom, t = 0.25, b = 10, 
                    top.label = NULL, bottom.label = NULL, 
-                   xlim = c(50, 1200), print.alignment = FALSE,
-                   print.graphic = TRUE)
+                   xlim = c(50, 1200), x.threshold = 0, 
+                   print.alignment = FALSE, print.graphic = TRUE)
 }
 \arguments{
     \item{spec.top}{data frame containing the experimental spectrum's peak list with the \emph{m/z} values in the first column and corresponding intensities in the second}
@@ -16,18 +16,19 @@ SpectrumSimilarity(spec.top, spec.bottom, t = 0.25, b = 10,
     \item{top.label}{character string to label the top spectrum.}
     \item{bottom.label}{character string to label the bottom spectrum.}
     \item{xlim}{numeric vector of length 2, defining the beginning and ending values of the x-axis.}
-    \item{print.alignment}{TRUE or FALSE value indicating if a data frame showing the aligned \emph{m/z} values should be printed. Default is FALSE. The data frame contains aligned peak intensities from the top and bottom spectra, and is used to check the results.}
-    \item{print.graphic}{TRUE or FALSE value indicating if the head-to-tail plot should be printed. The defaut value is TRUE. The unaligned spectra are shown in the plot.}
+    \item{x.threshold}{numeric value of length 1 specifying the \emph{m/z} threshold used for the similarity score calculation. Only peaks with \emph{m/z} values above the threshold are used in the calculation. This can be used to exclude noise and/or non-specific ions at the low end of the spectrum. By default all ions are used.}
+    \item{print.alignment}{TRUE or FALSE value specifying if a data frame showing the aligned \emph{m/z} values should be printed. Default is FALSE. The data frame contains aligned peak intensities from the top and bottom spectra, and is used to check the results. It contains all peaks, not only those subsetted by the \code{b} and \code{x.threshold} arguments.}
+    \item{print.graphic}{TRUE or FALSE value specifying if the head-to-tail plot should be printed. The defaut value is TRUE. The unaligned spectra are shown in the plot.}
 }
 \details{
-The mass spectral similarity score is calculated as (where \eqn{\cdot}{\%*\%} is the dot product) \deqn{\cos \theta = \frac{u \cdot v}{\sqrt{u \cdot u} \sqrt{v \cdot v}}}{cos \theta = (u \%*\% v) / (sqrt(sum(u^2)) * sqrt(sum(v^2)))} where \eqn{u} and \eqn{v} are the aligned intensity vectors of the two spectra.  The \code{t} argument is used to align the intensities.  The bottom spectum is used as the reference spectrum, and the \emph{m/z} values of peaks in the top spectrum that are within \code{t} of a reference \emph{m/z} value are paired with that reference peak.  Ideally, a single peak from the top spectrum should be paired with a single peak from the reference spectrum.  Peaks without a match are paired with an intensity of zero.
+The mass spectral similarity score is calculated as (where \eqn{\cdot}{\%*\%} is the dot product) \deqn{\cos \theta = \frac{u \cdot v}{\sqrt{u \cdot u} \sqrt{v \cdot v}}}{cos \theta = (u \%*\% v) / (sqrt(sum(u^2)) * sqrt(sum(v^2)))} where \eqn{u} and \eqn{v} are the aligned intensity vectors of the two spectra, as subsetted by the \code{b} and \code{x.threshold} arguments.  The \code{t} argument is used to align the intensities.  The bottom spectum is used as the reference spectrum, and the \emph{m/z} values of peaks in the top spectrum that are within \code{t} of a reference \emph{m/z} value are paired with that reference peak.  Ideally, a single peak from the top spectrum should be paired with a single peak from the reference spectrum. Peaks without a match are paired with an intensity of zero.
 
 Note that, although both are based on the cosine of the two intensity vectors, the spectral similarity score given by \code{SpectrumSimilarity} is not the same as that given by the NIST MS Search program, described in the reference below. 
 }
 \references{
 "Optimization and Testing of Mass Spectral Library Search Algorithms for Compound Identification," Stein SE, Scott DR, \emph{Journal of the American Society for Mass Spectrometry}, 1994, 5, 859-866.
 }
-\value{A vector containing the similarity score. The data frame showing the peak alignment is printed. The head-to-tail plot of the two mass spectra is printed.}
+\value{A vector containing the similarity score. By default the head-to-tail plot of the two mass spectra is printed, and optionally the data frame showing the peak alignment is printed.}
 \author{Nathan G. Dodder}
 \seealso{\code{\link{PeptideSpectrum}}}
 \examples{

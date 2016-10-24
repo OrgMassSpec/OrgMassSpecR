@@ -4,9 +4,7 @@
 \section{Changes in development version}{
 
     \itemize{
-
-      \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. 
-
+      \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclue a lower portion of the spectrum from the similary score calculation.
     }
 
 }
