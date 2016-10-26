@@ -4,7 +4,8 @@
 \description{Reads in all \code{.msp} files within a directory and makes a single concatenated data frame of \emph{m/z} values and intensities.
 }
 \usage{
-ReadMspDirectory(directory, skip = 2, comment.char = "")
+ReadMspDirectory(directory, skip = 2, comment.char = "", 
+                 remove.placeholders = TRUE)
 }
 \arguments{
   \item{directory}{character string. The path to the directory
@@ -12,6 +13,7 @@ ReadMspDirectory(directory, skip = 2, comment.char = "")
     directory on unix-like systems.}
   \item{skip}{integer. The number of lines at the top of the input file to skip before reading. Passed internally to read.table.}
   \item{comment.char}{a character vector of length one containing a single character or an empty string. Use "" to turn off the interpretation of comments altogether. Passed internally to read.table.}
+  \item{remove.placeholders}{TRUE or FALSE specifying if zero intensity peaks in the MSP file should be removed from the resulting data frame.}
 }
 \details{MSP is a National Institute of Standards and Technology (NIST) text format for centroid spectra.  This format is exported by some instrument software.
 

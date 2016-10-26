@@ -1,4 +1,4 @@
-ReadMspFile <- function(file, skip = 2, comment.char = "") {
+ReadMspFile <- function(file, skip = 2, comment.char = "", remove.placeholders = TRUE) {
 
   msp <- read.table(file = file, sep = ";", skip = skip, fill = TRUE, 
                     stringsAsFactors = FALSE, comment.char = comment.char)
@@ -21,7 +21,7 @@ ReadMspFile <- function(file, skip = 2, comment.char = "") {
 
   result <- as.data.frame(do.call("rbind", results.list))
   names(result) <- c("mz", "intensity")
-  result <- result[result$intensity != 0, ]
+  if(remove.placeholders == TRUE) result <- result[result$intensity != 0, ]
   ordered.result <- result[order(result$mz), ]
   row.names(ordered.result) <- 1:nrow(ordered.result)
   return(ordered.result)

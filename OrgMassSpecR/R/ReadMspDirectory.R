@@ -1,4 +1,4 @@
-ReadMspDirectory <- function(directory, skip = 2, comment.char = "") {
+ReadMspDirectory <- function(directory, skip = 2, comment.char = "", remove.placeholders = TRUE) {
 
   ReadMSP <- function(file) {
 
@@ -25,7 +25,7 @@ ReadMspDirectory <- function(directory, skip = 2, comment.char = "") {
 
     result <- as.data.frame(do.call("rbind", results.list))
     names(result) <- c("mz", "intensity")
-    result <- result[result$intensity != 0, ]
+    if(remove.placeholders == TRUE) result <- result[result$intensity != 0, ]
     ordered.result <- result[order(result$mz), ]
     row.names(ordered.result) <- 1:nrow(ordered.result)
     return(ordered.result)
