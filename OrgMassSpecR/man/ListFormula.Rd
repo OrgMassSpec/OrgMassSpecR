@@ -13,8 +13,8 @@ ListFormula(elemental.formula)
 \details{
 To maintain compatibility with \code{\link{MolecularWeight}},
 \code{\link{MonoisotopicMass}}, and \code{\link{IsotopicDistribution}}
-the elemental formula can contain only C,H,N,O,S,P,Br,Cl,F,Si, and
-Sn (Sn is a default element in \code{MolecularWeight} only). Elements not in this set will be ignored and a warning will be
+the elemental formula can contain only C,H,N,O,S,P,Br,Cl,F,I,Si, and
+Sn (I and Sn are default elements in \code{MolecularWeight} only). Elements not in this set will be ignored and a warning will be
 generated. The function can handle repeated elements, but not element
 multiplication indicated by parenthesis.
 
@@ -28,5 +28,6 @@ list will contain the incorrect number of elements.
 \examples{
 ListFormula("C14H8Cl4")
 ListFormula("C6H5OH")
+ListFormula("C15H12I3NO4")
 }
 

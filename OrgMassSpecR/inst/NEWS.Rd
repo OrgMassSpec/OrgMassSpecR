@@ -1,11 +1,12 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
-\section{Changes in development version}{
+\section{Changes in development version 0.4-9 (2017-01-22)}{
 
     \itemize{
       \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclue a lower portion of the spectrum from the similary score calculation.
-    \item Added remove.placeholders argument to ReadMSPFile and ReadMSPDirectory to optionally remove zero intensity peaks from the resulting data frame.}
+    \item Added remove.placeholders argument to ReadMSPFile and ReadMSPDirectory to optionally remove zero intensity peaks from the resulting data frame.
+    \item Included iodine in ListFormula and MolecularWeight (thanks to G. Getzinger).
     }
 }
 

@@ -1,6 +1,6 @@
 MolecularWeight <- function(formula = list(), amu = list()) {
     
-    defaultFormula <- list(C = 0, H = 0, N = 0, O = 0, S = 0, P = 0, Br = 0, Cl = 0, F = 0, Si = 0, Sn = 0, x = 0)
+    defaultFormula <- list(C = 0, H = 0, N = 0, O = 0, S = 0, P = 0, Br = 0, Cl = 0, F = 0, I = 0, Si = 0, Sn = 0, x = 0)
     defaultFormula[names(formula)] <- formula   # replace default values with argument values
     
     defaultAmu <- list(C = 12.0107, 
@@ -12,6 +12,7 @@ MolecularWeight <- function(formula = list(), amu = list()) {
                        Br = 79.904,
                        Cl = 35.453,
                        F = 18.9984032,
+                       I = 126.90447,
                        Si = 28.0855,
                        Sn = 118.710,
                        x = 0)
@@ -27,6 +28,7 @@ MolecularWeight <- function(formula = list(), amu = list()) {
            defaultFormula$Br * defaultAmu$Br + 
            defaultFormula$Cl * defaultAmu$Cl +
            defaultFormula$F * defaultAmu$F +
+           defaultFormula$I * defaultAmu$I +
            defaultFormula$Si * defaultAmu$Si +
            defaultFormula$Sn * defaultAmu$Sn +
            defaultFormula$x * defaultAmu$x)

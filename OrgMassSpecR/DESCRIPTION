@@ -1,8 +1,8 @@
 Package: OrgMassSpecR
 Type: Package
 Title: Organic Mass Spectrometry
-Version: 0.4-8
-Date: 2016-10-25
+Version: 0.4-9
+Date: 2017-01-22
 Authors@R: c(person("Nathan", "Dodder", role = c("cre", "aut", "cph"), email = "ndodder@mail.sdsu.edu"),
              person("Katharine", "Mullen", role = "ctb"))
 Depends: R (>= 3.0.0)

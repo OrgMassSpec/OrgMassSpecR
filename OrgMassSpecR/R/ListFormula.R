@@ -35,7 +35,7 @@ ListFormula <- function(elemental.formula) {
   }
 
   # get number of atoms of each element
-  elements <- c("C", "H", "N", "O", "S", "P", "Br", "Cl", "F", "I","Si", "Sn")
+  elements <- c("C", "H", "N", "O", "S", "P", "Br", "Cl", "F", "I", "Si", "Sn")
   result <- as.list(sapply(elements, function(x) { GetAtoms(elemental.formula, x) }))
   return(result)
 
