@@ -6,9 +6,9 @@ ListFormula <- function(elemental.formula) {
     y <- attr(chr[[1]], which = "match.length")[i]
     z <- substr(elemental.formula, chr[[1]][i], chr[[1]][i] + y - 1)
     if (!(z == "C" | z =="H" | z =="N" | z =="O" | z =="S" | z =="P"
-        | z =="Br" | z =="Cl" | z =="F" | z =="Si" | z=="Sn"))
+        | z =="Br" | z =="Cl" | z =="F" | z =="I" | z =="Si" | z=="Sn"))
       warning(paste("Elemental formula", elemental.formula,
-                    "contains element not of C,H,N,O,S,P,Br,Cl,F,Si,Sn."))
+                    "contains element not of C,H,N,O,S,P,Br,Cl,F,I,Si,Sn."))
   }
 
   # get number of atoms
@@ -35,7 +35,7 @@ ListFormula <- function(elemental.formula) {
   }
 
   # get number of atoms of each element
-  elements <- c("C", "H", "N", "O", "S", "P", "Br", "Cl", "F", "Si", "Sn")
+  elements <- c("C", "H", "N", "O", "S", "P", "Br", "Cl", "F", "I","Si", "Sn")
   result <- as.list(sapply(elements, function(x) { GetAtoms(elemental.formula, x) }))
   return(result)
 
