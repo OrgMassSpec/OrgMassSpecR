@@ -1,6 +1,6 @@
 SpectrumSimilarity <- function(spec.top, spec.bottom, t = 0.25, b = 10, top.label = NULL, 
                                bottom.label = NULL, xlim = c(50, 1200), x.threshold = 0, print.alignment = FALSE,
-                               print.graphic = TRUE) {
+                               print.graphic = TRUE, output.list = FALSE) {
   
   
   ## format spectra and normalize intensitites
@@ -61,7 +61,66 @@ SpectrumSimilarity <- function(spec.top, spec.bottom, t = 0.25, b = 10, top.labe
     text(10, -9, bottom.label)
   }
   
-  return(similarity_score)
+  if(output.list == TRUE) {
+    
+    # Grid graphics head to tail plot
+    
+    headTailPlot <- function() {
+      
+      pushViewport(plotViewport(c(5, 5, 2, 2)))
+      pushViewport(dataViewport(xscale = xlim, yscale = c(-125, 125)))
+      
+      grid.rect()
+      tmp <- pretty(xlim)
+      xlabels <- tmp[tmp >= xlim[1] & tmp <= xlim[2]]
+      grid.xaxis(at = xlabels)
+      grid.yaxis(at = c(-100, -50, 0, 50, 100))
+      
+      grid.segments(top_plot$mz,
+                    top_plot$intensity,
+                    top_plot$mz,
+                    rep(0, length(top_plot$intensity)),
+                    default.units = "native",
+                    gp = gpar(lwd = 0.75, col = "blue"))
+      
+      grid.segments(bottom_plot$mz,
+                    -bottom_plot$intensity,
+                    bottom_plot$mz,
+                    rep(0, length(bottom_plot$intensity)),
+                    default.units = "native",
+                    gp = gpar(lwd = 0.75, col = "red"))
+      
+      grid.abline(intercept = 0, slope = 0)
+      
+      grid.text("intensity (%)", x = unit(-3.5, "lines"), rot = 90)
+      grid.text("m/z", y = unit(-3.5, "lines"))
+      
+      popViewport(1)
+      pushViewport(dataViewport(xscale = c(0, 20), yscale = c(-10, 10)))
+      grid.text(top.label, unit(10, "native"), unit(9, "native"))
+      grid.text(bottom.label, unit(10, "native"), unit(-9, "native"))
+      
+      popViewport(2)
+      
+    }
+    
+    p <- grid.grabExpr(headTailPlot())
+    
+  }
+  
+  if(output.list == FALSE) {
+    
+    return(similarity_score)
+    
+  }
+  
+  if(output.list == TRUE) {
+    
+    return(list(similarity.score = similarity_score, 
+                alignment = alignment,
+                plot = p))
+    
+  }
   
   # simscore <- as.vector((u %*% v)^2 / (sum(u^2) * sum(v^2)))   # cos squared
   

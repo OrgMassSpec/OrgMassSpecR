@@ -21,6 +21,7 @@ export(ConvertConcentration,
 )
 
 importFrom("graphics", "axis", "lines", "mtext", "plot", "plot.new",
-             "plot.window", "polygon", "rect", "text")
+           "plot.window", "polygon", "rect", "text")
 importFrom("stats", "na.omit", "start")
 importFrom("utils", "read.table")
+import(grid)
