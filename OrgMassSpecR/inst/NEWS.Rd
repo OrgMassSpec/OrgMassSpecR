@@ -4,7 +4,7 @@
 \section{Changes in development version 0.5-1 (2017-02-04)}{
 
     \itemize{
-      \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclue a lower portion of the spectrum from the similary score calculation.
+      \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclude a lower portion of the spectrum from the similarity score calculation.
       \item Added output.list argument to SpectrumSimilarity, providing the option to return the similarity score, alignment dataframe, and plot in a list (thanks to M. Witting). In this case the plot is a grid graphics object.
     \item Added remove.placeholders argument to ReadMSPFile and ReadMSPDirectory to optionally remove zero intensity peaks from the resulting data frame.
     \item Included iodine in ListFormula and MolecularWeight (thanks to G. Getzinger).
