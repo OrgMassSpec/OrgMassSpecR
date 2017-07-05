@@ -1,7 +1,7 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
-\section{Changes in development version 0.5-1 (2017-02-04)}{
+\section{Changes in version 0.5-1 (2017-07-05)}{
 
     \itemize{
       \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclude a lower portion of the spectrum from the similarity score calculation.
