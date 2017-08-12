@@ -67,23 +67,27 @@ PeptideSpectrum <- function(expt, theory, t = 0.4, b = 5, label = "", xlim = c(1
 
 
     ## annotate identified peaks
-
+    
     if(supress == FALSE) {
-        x_range <- xlim[2] - xlim[1]
-        y_position <- vector("numeric") 
+      x_range <- xlim[2] - xlim[1]
+      y_position <- vector("numeric") 
+      if(num_identifications == 1) {
+        y_position[i] <- identifications$expt_intensity[i]
+      } else {
         for(i in 1:(num_identifications - 1)) {
-            if((identifications$expt_mz[i+1] - identifications$expt_mz[i]) / x_range < 0.025 & 
-                    all.equal(identifications$expt_intensity[i], 100) != TRUE) {
-                y_position[i] <- identifications$expt_intensity[i] + 30
-                lines(rep(identifications$expt_mz[i], 2), 
-                      c(identifications$expt_intensity[i], 
-                      identifications$expt_intensity[i] + 30), 
-                      lty = "dotted", 
-                      col = color[i])  
-            } else y_position[i] <- identifications$expt_intensity[i]
-        }    
-        y_position[num_identifications] <- identifications$expt_intensity[num_identifications]
-        text(identifications$expt_mz, y_position + 12, labels = identifications$ms2type, col = color, srt = 90, cex = 0.9)
+          if((identifications$expt_mz[i+1] - identifications$expt_mz[i]) / x_range < 0.025 & 
+              all.equal(identifications$expt_intensity[i], 100) != TRUE) {
+              y_position[i] <- identifications$expt_intensity[i] + 30
+              lines(rep(identifications$expt_mz[i], 2), 
+                    c(identifications$expt_intensity[i], 
+                    identifications$expt_intensity[i] + 30), 
+                    lty = "dotted", 
+                    col = color[i])  
+          } else y_position[i] <- identifications$expt_intensity[i]
+        }
+      }
+      y_position[num_identifications] <- identifications$expt_intensity[num_identifications]
+      text(identifications$expt_mz, y_position + 12, labels = identifications$ms2type, col = color, srt = 90, cex = 0.9)
     }
 
 

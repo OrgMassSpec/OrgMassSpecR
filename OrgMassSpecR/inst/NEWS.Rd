@@ -1,13 +1,14 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
-\section{Changes in version 0.5-1 (2017-07-05)}{
+\section{Changes in version 0.5-2 (2017-08-11)}{
 
     \itemize{
       \item Added print.alignment and print.graphic arguments to SpectrumSimilarity, providing options to generate these outputs. Added x.threshold argument to SepectrumSimilarity to exclude a lower portion of the spectrum from the similarity score calculation.
       \item Added output.list argument to SpectrumSimilarity, providing the option to return the similarity score, alignment dataframe, and plot in a list (thanks to M. Witting). In this case the plot is a grid graphics object.
-    \item Added remove.placeholders argument to ReadMSPFile and ReadMSPDirectory to optionally remove zero intensity peaks from the resulting data frame.
-    \item Included iodine in ListFormula and MolecularWeight (thanks to G. Getzinger).
+      \item Added remove.placeholders argument to ReadMSPFile and ReadMSPDirectory to optionally remove zero intensity peaks from the resulting data frame.
+      \item Included iodine in ListFormula and MolecularWeight (thanks to G. Getzinger).
+      \item Fixed error in PeptideSpectrum. If only one fragment ion match was made, the function stopped with an error when annotating the spectrum (thanks to H. Kim).
     }
 }
 

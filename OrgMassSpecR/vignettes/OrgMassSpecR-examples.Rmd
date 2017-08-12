@@ -1,5 +1,5 @@
 ---
-date: "`r Sys.Date()`"
+output: rmarkdown::html_document
 vignette: >
   %\VignetteIndexEntry{OrgMassSpecR Examples}
   %\VignetteEngine{knitr::rmarkdown}
