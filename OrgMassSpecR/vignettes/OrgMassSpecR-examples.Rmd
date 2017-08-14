@@ -9,7 +9,7 @@ vignette: >
 # Vignette for OrgMassSpecR: Examples
 
 ### Nathan Dodder
-#### Package Version: `r packageVersion('OrgMassSpecr')`, Date: `r Sys.Date()`
+#### Date: `r Sys.Date()`
 
 ```{r Setup, echo=FALSE}
 library(knitr)
