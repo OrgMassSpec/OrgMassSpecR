@@ -20,7 +20,7 @@ The amino acid residues must be specified by the one letter codes defined in the
 
 The fragmentation rules can be set for collision induced dissociation (b- and y-ions) or electron transfer dissociation (c- and z-ions). 
 
-The argument \code{IAA} specifies treatment of the protein with iodoacetamide to break the disulfide bonds.  This treatment produces iodoacetylated cysteine residues (elemental formula C5H8N2O2S).
+The argument \code{IAA} specifies treatment of the protein with iodoacetamide. This treatment produces iodoacetylated cysteine residues (elemental formula C5H8N2O2S).
 
 If TRUE, the argument \code{N15} specifies 100\% nitrogen-15 incorporation.  It is intended for proteins grown with a nitrogen-15 labeled food source.  (Although the experiment itself may grow a protein with less than 100\% nitrogen-15 incorporation).  Setting \code{N15 = TRUE} does not modify the mass of a custom residue, or the mass of the nitrogen(s) added if \code{IAA = TRUE}.
 
