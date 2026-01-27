@@ -21,7 +21,7 @@ The natural incorporation of deuterium is 0.000115.
 
 The algorithm used in this function is based on \code{\link{sample}}, and will give a slightly different result each time it is run.  \code{IsotopicDistributionHDX} has not been tested for sequences over approximately 3000 amu and charges greater that 3+.
 }
-\references{The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.  The molar mass of a proton (H+) is from the NIST CODATA Website \url{http://physics.nist.gov/cuu/Constants/index.html}.  
+\references{The relative atomic masses of the isotopes and molar mass of a proton (H+) were from NIST.  
 }
 \value{
 A data frame with the following column names.

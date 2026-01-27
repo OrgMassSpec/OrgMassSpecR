@@ -27,7 +27,7 @@ If TRUE, the argument \code{N15} specifies 100\% nitrogen-15 incorporation.  It 
 If a custom residue code is identical to a predefined residue code, the custom residue mass will be used in place of the predefined mass.
 }
 \references{
-The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.  The molar mass of a proton (H+) is from the NIST CODATA Website \url{http://physics.nist.gov/cgi-bin/cuu/Value?mmp}.
+The relative atomic masses of the isotopes and molar mass of a proton (H+) were from NIST.
 }
 \value{
 A data frame with the following column names.  The data frame is arranged this way to facilitate selection of product-precursor ion pairs. 

@@ -23,7 +23,7 @@ This function is intended for simulating the isotopic distributions of
 small molecules (< approximately 3000 amu and <= 3 charges) as measured on low resolution mass spectrometers. 
 }
 \references{
-The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.
+The relative atomic masses of the isotopes were from NIST.
 }
 \value{
 A data frame with the following column names.

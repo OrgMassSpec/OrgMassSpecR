@@ -42,7 +42,7 @@ If a custom residue code is identical to a predefined residue code, the custom r
 
 The error message \dQuote{\code{object "mass" not found}} indicates the input sequence contains an undefined residue(s).
 }
-\references{The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.  The molar mass of a proton (H+) is from the NIST CODATA Website \url{http://physics.nist.gov/cuu/Constants/index.html}.  
+\references{The relative atomic masses of the isotopes and molar mass of a proton (H+) were from NIST.  
 }
 \value{A data frame with the following column names.
     \item{peptide}{resulting peptides.}

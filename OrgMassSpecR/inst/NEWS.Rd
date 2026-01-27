@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{OrgMassSpecR News}
 
+\section{Changes in version 0.5-4 (2026-01-26)}{
+
+  \itemize{
+    \item Modified the documentation for FragmentPeptide.
+    \item Cleaned up citations for isotopic masses.
+  }
+}
+
 \section{Changes in version 0.5-2 (2017-08-11)}{
 
     \itemize{

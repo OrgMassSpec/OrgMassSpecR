@@ -32,7 +32,7 @@ The algorithm used in this function is based on \code{\link{sample}}, and will g
 
 3. "Measurement of the Isotope Enrichment of Stable Isotope-Labeled Proteins Using High-Resolution Mass Spectra of Peptides" MacCoss MJ, Wu CC, Matthews DE, and Yates III JR, \emph{Analytical Chemistry}, 2005, 77, 7646-7653.
 
-The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.  The molar mass of a proton (H+) is from the NIST CODATA Website \url{http://physics.nist.gov/cuu/Constants/index.html}.
+The relative atomic masses of the isotopes and molar mass of a proton (H+) were from NIST.
 
 Note that in reference 3 "a biologically relevant 13C/12C isotope ratio of 1.096\% was used instead of the more carbonate specific ratio of 1.112\%."  The 13C/12C ratio used by \code{IsotopicDistributionN} is 1.081\%.  
 }

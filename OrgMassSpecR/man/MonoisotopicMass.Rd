@@ -36,8 +36,7 @@ The user defined element \code{x} can be used to define an additional element, s
 
 This function will accept values that do not correspond to known physical reality, such as a fractional number of elements, a fractional charge, or the wrong relative atomic mass value for an isotope.
 }
-\references{
-The relative atomic masses of the isotopes are from the NIST Physical Reference Data Website \url{http://physics.nist.gov/PhysRefData/Compositions/}.  The molar mass of a proton (H+) is from the NIST CODATA Website \url{http://physics.nist.gov/cuu/Constants/index.html}.  
+\references{The relative atomic masses of the isotopes and molar mass of a proton (H+) were from NIST.  
 }
 \value{The monoisotopic mass of the unchaged molecule or the monoisotopic m/z value of the charged molecule.}
 \author{Nathan G. Dodder and Katharine M. Mullen}
